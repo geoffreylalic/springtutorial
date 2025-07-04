@@ -10,6 +10,9 @@ public class SpringtutorialApplication {
         var ctx = SpringApplication.run(SpringtutorialApplication.class, args);
         MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
         System.out.println(myFirstService.tellAStory());
+        System.out.println(myFirstService.getJavaVersion());
+        System.out.println(myFirstService.getOsName());
+        System.out.println(myFirstService.getCustomProperty());
     }
 
 
