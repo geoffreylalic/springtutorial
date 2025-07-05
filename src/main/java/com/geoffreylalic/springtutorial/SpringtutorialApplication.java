@@ -7,14 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringtutorialApplication {
 
     public static void main(String[] args) {
-        var ctx = SpringApplication.run(SpringtutorialApplication.class, args);
-        MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
-        System.out.println(myFirstService.tellAStory());
-        System.out.println(myFirstService.getJavaVersion());
-        System.out.println(myFirstService.getOsName());
-        System.out.println(myFirstService.getCustomProperty());
-        System.out.println(myFirstService.getMyCustomProperty());
-        System.out.println(myFirstService.getMyCustomProperty2());
+        SpringApplication.run(SpringtutorialApplication.class, args);
     }
 
 
