@@ -13,6 +13,8 @@ public class SpringtutorialApplication {
         System.out.println(myFirstService.getJavaVersion());
         System.out.println(myFirstService.getOsName());
         System.out.println(myFirstService.getCustomProperty());
+        System.out.println(myFirstService.getMyCustomProperty());
+        System.out.println(myFirstService.getMyCustomProperty2());
     }
 
 
