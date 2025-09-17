@@ -16,12 +16,19 @@ public class SchoolController {
     }
 
     @PostMapping("/schools")
-    public School createSchool(@RequestBody School school){
+    public School createSchool(@RequestBody SchoolDto schoolDto) {
+        School school = toSchool(schoolDto);
         return repository.save(school);
     }
 
+    public School toSchool(SchoolDto schoolDto) {
+        School school = new School();
+        school.setName(schoolDto.name());
+        return school;
+    }
+
     @GetMapping("/schools")
-    public List<School> listSchools(){
+    public List<School> listSchools() {
         return repository.findAll();
     }
 
