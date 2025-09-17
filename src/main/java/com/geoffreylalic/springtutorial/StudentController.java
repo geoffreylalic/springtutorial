@@ -20,6 +20,16 @@ public class StudentController {
 
     @PostMapping("/students")
     public ResponseEntity<?> createStudent(@RequestBody StudentDto studentDto) {
+        Student student = toStudent(studentDto);
+        Long nbStudents = studentRepository.countStudentsByEmail(student.getEmail());
+        if (nbStudents > 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student already exists.");
+        }
+        studentRepository.save(student);
+        return new ResponseEntity<Student>(student, HttpStatus.OK);
+    }
+
+    private Student toStudent(StudentDto studentDto) {
         School school = new School();
         school.setId(studentDto.schoolId());
 
@@ -29,14 +39,7 @@ public class StudentController {
         student.setEmail(studentDto.email());
         student.setSchool(school);
 
-
-
-        Long nbStudents = studentRepository.countStudentsByEmail(student.getEmail());
-        if (nbStudents > 0) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student already exists.");
-        }
-        studentRepository.save(student);
-        return new ResponseEntity<Student>(student, HttpStatus.OK);
+        return student;
     }
 
 
