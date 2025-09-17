@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
@@ -45,18 +46,34 @@ public class StudentController {
 
 
     @GetMapping("/students/search/{student-name}")
-    public List<Student> getStudentsByName(@PathVariable("student-name") String studentName) {
-        return studentRepository.findAllByFirstNameContaining(studentName);
+    public List<StudentResponseDto> getStudentsByName(@PathVariable("student-name") String studentName) {
+        List<Student> students = studentRepository.findAllByFirstNameContaining(studentName);
+        List<StudentResponseDto> studentResponseDtos = new ArrayList<>();
+        for (Student student : students) {
+            studentResponseDtos.add(new StudentResponseDto(student.getId(), student.getFirstName(), student.getLastName(), student.getEmail()));
+        }
+        return studentResponseDtos;
     }
 
     @GetMapping("/students/{student-id}")
-    public Student postStudent(@PathVariable("student-id") Integer studentId) {
-        return studentRepository.findById(studentId).orElse(null);
+    public StudentResponseDto postStudent(@PathVariable("student-id") Integer studentId) {
+        Student student = studentRepository.findById(studentId).orElse(null);
+        if (student != null) {
+            return new StudentResponseDto(student.getId(), student.getFirstName(), student.getLastName(), student.getEmail());
+        }
+        return null;
     }
 
     @GetMapping("/students")
-    public List<Student> getStudents() {
-        return studentRepository.findAll();
+    public List<StudentResponseDto> getStudents() {
+        List<Student> students = studentRepository.findAll();
+        List<StudentResponseDto> studentResponseDtos = new ArrayList<>();
+
+        for (Student student : students) {
+            studentResponseDtos.add(new StudentResponseDto(student.getId(), student.getFirstName(), student.getFirstName(), student.getEmail()));
+        }
+        return studentResponseDtos;
+
     }
 
     @DeleteMapping("/students/{student-id}")
