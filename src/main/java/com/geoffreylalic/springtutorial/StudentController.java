@@ -26,7 +26,8 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student already exists.");
         }
         studentRepository.save(student);
-        return new ResponseEntity<Student>(student, HttpStatus.OK);
+        StudentResponseDto studentResponseDto = new StudentResponseDto(student.getId(), student.getFirstName(), student.getLastName(), student.getEmail());
+        return new ResponseEntity<StudentResponseDto>(studentResponseDto, HttpStatus.OK);
     }
 
     private Student toStudent(StudentDto studentDto) {
