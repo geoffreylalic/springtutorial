@@ -1,6 +1,8 @@
-package com.geoffreylalic.springtutorial;
+package com.geoffreylalic.springtutorial.student;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.geoffreylalic.springtutorial.studentprofile.StudentProfile;
+import com.geoffreylalic.springtutorial.school.School;
 import jakarta.persistence.*;
 
 @Entity

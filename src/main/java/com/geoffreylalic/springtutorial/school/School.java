@@ -1,6 +1,7 @@
-package com.geoffreylalic.springtutorial;
+package com.geoffreylalic.springtutorial.school;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.geoffreylalic.springtutorial.student.Student;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

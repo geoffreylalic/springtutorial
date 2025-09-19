@@ -1,4 +1,4 @@
-package com.geoffreylalic.springtutorial;
+package com.geoffreylalic.springtutorial.student;
 
 public record StudentDto(String firstName,
                          String lastName,

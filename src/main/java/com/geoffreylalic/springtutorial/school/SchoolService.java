@@ -1,4 +1,4 @@
-package com.geoffreylalic.springtutorial;
+package com.geoffreylalic.springtutorial.school;
 
 import org.springframework.stereotype.Service;
 

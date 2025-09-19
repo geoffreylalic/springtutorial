@@ -1,5 +1,6 @@
-package com.geoffreylalic.springtutorial;
+package com.geoffreylalic.springtutorial.studentprofile;
 
+import com.geoffreylalic.springtutorial.student.Student;
 import jakarta.persistence.*;
 
 @Entity
