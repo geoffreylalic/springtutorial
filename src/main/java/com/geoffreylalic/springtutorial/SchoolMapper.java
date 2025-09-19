@@ -6,6 +6,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface SchoolMapper {
-    SchoolResponseDto toResponseDto (School school);
-    List<SchoolResponseDto> toResponseDtos (List<School> schools);
+    SchoolResponseDto toResponseDto(School school);
+
+    List<SchoolResponseDto> toResponseDtos(List<School> schools);
+
+    School toSchool(SchoolDto schoolDto);
 }
