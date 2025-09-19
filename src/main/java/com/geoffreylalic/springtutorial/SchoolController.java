@@ -5,20 +5,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class SchoolController {
-    private final SchoolRepository repository;
+    private final SchoolRepository schoolRepository;
+    private final SchoolMapper schoolMapper;
 
-    public SchoolController(SchoolRepository repository) {
-        this.repository = repository;
+    public SchoolController(SchoolRepository repository, SchoolMapper schoolMapper) {
+        this.schoolRepository = repository;
+        this.schoolMapper = schoolMapper;
     }
 
     @PostMapping("/schools")
     public School createSchool(@RequestBody SchoolDto schoolDto) {
         School school = toSchool(schoolDto);
-        return repository.save(school);
+        return schoolRepository.save(school);
     }
 
     public School toSchool(SchoolDto schoolDto) {
@@ -28,8 +31,9 @@ public class SchoolController {
     }
 
     @GetMapping("/schools")
-    public List<School> listSchools() {
-        return repository.findAll();
+    public List<SchoolResponseDto> listSchools() {
+        List<School> schools = schoolRepository.findAll();
+        return schoolMapper.toResponseDtos(schools);
     }
 
 
